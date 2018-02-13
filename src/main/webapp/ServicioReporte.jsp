@@ -15,7 +15,7 @@
             type:"GET",
             success:function(data){
                 var lista=$.parseJSON(data);
-                for(int i=0;i<lista.length;i++){
+                for(var i=0;i<lista.length;i++){
                     $("#miTabla").append('<tr><td>'+lista[i].nombre+'</td>');
                     $("#miTabla").append('<td>'+lista[i].cuenta+'</td></tr>');
                 }
