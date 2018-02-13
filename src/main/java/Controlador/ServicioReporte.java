@@ -38,8 +38,9 @@ public class ServicioReporte extends HttpServlet {
             ArrayList<ReporteServicio> reportes = s.getReporteServicios();
             Gson gson=new Gson();
             String sa=gson.toJson(reportes);
-            PrintWriter out = response.getWriter();
-            out.println(sa);
+            try ( PrintWriter out = response.getWriter()){
+                out.println(sa);
+            }
             //request.setAttribute("reporte", reportes);
             //RequestDispatcher rd = getServletContext().getRequestDispatcher("/ServicioReporte.jsp");
             //rd.forward(request, response);
