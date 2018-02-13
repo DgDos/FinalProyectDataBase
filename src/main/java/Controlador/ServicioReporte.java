@@ -5,9 +5,11 @@
  */
 package Controlador;
 
+import com.google.gson.Gson;
 import dao.CategoriaDAO;
 import dao.ServicioDAO;
 import java.io.IOException;
+import static java.lang.System.out;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,9 +36,12 @@ public class ServicioReporte extends HttpServlet {
         try {
             ServicioDAO s = new ServicioDAO();
             ArrayList<ReporteServicio> reportes = s.getReporteServicios();
-            request.setAttribute("reporte", reportes);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/ServicioReporte.jsp");
-            rd.forward(request, response);
+            Gson gson=new Gson();
+            String sa=gson.toJson(reportes);
+            out.print(sa);
+            //request.setAttribute("reporte", reportes);
+            //RequestDispatcher rd = getServletContext().getRequestDispatcher("/ServicioReporte.jsp");
+            //rd.forward(request, response);
         } catch (URISyntaxException ex) {
             Logger.getLogger(ServicioReporte.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
